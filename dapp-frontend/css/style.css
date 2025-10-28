@@ -1,0 +1,192 @@
+/* css/style.css (Versi Responsif yang Disempurnakan) */
+
+/* Variabel Warna & Font */
+:root {
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #212529;
+    --text-light: #6c757d;
+    --border-color: #dee2e6;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Reset & Global Styles */
+body {
+    font-family: var(--font-family);
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 0 1.5em; /* Padding awal untuk desktop */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Layout Utama */
+.container {
+    background-color: var(--card-background);
+    padding: 2em; /* Padding awal untuk desktop */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 2em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    padding: 1.5em;
+    border-radius: 8px;
+}
+
+/* Tipografi & Judul */
+h1, h2, h3, h4 {
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 0;
+    font-weight: 600;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5em; margin-bottom: 1em; }
+h3 { font-size: 1.25rem; text-align: left; }
+h4 { font-size: 1.1rem; margin-bottom: 1em; text-align: left; }
+
+/* Tombol & Input */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    width: 100%;
+    margin-top: 1em;
+}
+button:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+button:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1em;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+}
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Elemen Spesifik */
+.log {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    height: 180px;
+    background: #f8f9fa;
+    white-space: pre-wrap;
+    font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+    border-radius: 6px;
+    overflow-y: auto;
+    color: var(--text-light);
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px 12px;
+    margin-bottom: 1.5em;
+    align-items: center;
+    word-break: break-all; /* Agar alamat wallet tidak overflow */
+}
+.balance-info {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.pool-status {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+.dex-nav {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1.5em;
+}
+.dex-nav .nav-btn {
+    flex: 1;
+    background-color: transparent;
+    color: var(--text-light);
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 1em;
+    cursor: pointer;
+    margin-top: 0;
+    border-radius: 0;
+}
+.dex-nav .nav-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* ================================================================== */
+/* ||                ATURAN RESPONSIVE (MEDIA QUERIES)             || */
+/* ================================================================== */
+
+/* Untuk layar tablet dan di bawahnya (lebar maks 768px) */
+@media (max-width: 768px) {
+    body {
+        margin: 1em auto;
+        padding: 0 1em; /* Kurangi padding di sisi kiri-kanan */
+    }
+
+    .container {
+        padding: 1.5em; /* Kurangi padding di dalam container */
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Buat kolom menjadi 1, menumpuk ke bawah */
+        gap: 1.5em; /* Kurangi jarak antar kartu */
+    }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+}
+
+/* Untuk layar handphone yang lebih kecil (lebar maks 480px) */
+@media (max-width: 480px) {
+    .status-grid {
+        grid-template-columns: 80px 1fr; /* Perkecil kolom label status */
+    }
+    .dex-nav {
+        flex-direction: column; /* Tumpuk tombol navigasi DEX */
+    }
+    .dex-nav .nav-btn {
+        border-bottom: 1px solid var(--border-color);
+    }
+    .dex-nav .nav-btn.active {
+        border-bottom: 2px solid var(--primary-color);
+    }
+}

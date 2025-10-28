@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  geth-pow:
+    image: ethereum/client-go:v1.11.6
+    container_name: geth-pow
+    restart: unless-stopped
+    ports:
+      - "8546:8545"
+      - "30304:30303/tcp"
+      - "30304:30303/udp"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'   # setara dengan --cpu-period=100000 dan --cpu-quota=10000
+    volumes:
+      - ./pow-data:/data
+      - ./dag:/dag
+    command: >
+      --datadir /data
+      --networkid 6027
+      --http
+      --http.addr 0.0.0.0
+      --http.port 8545
+      --http.api admin,eth,net,web3,personal,miner,txpool
+      --http.vhosts="*"
+      --http.corsdomain="*"
+      --allow-insecure-unlock
+      --unlock 0xYourWalletAddressHere
+      --miner.etherbase 0xYourWalletAddressHere
+      --password /data/password.txt
+      --mine
+      --miner.threads=1
+      --syncmode full
+      --cache 2048
+      --snapshot=false
+      --ethash.dagdir /dag
+      --maxpeers 25
+      --nodiscover
+    # Uncomment baris di bawah jika ingin menambahkan IP lokal/eksternal:
+    #   --nat extip:192.168.x.x

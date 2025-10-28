@@ -1,0 +1,25 @@
+{
+  "config": {
+    "chainId": 6027,
+    "ethash": {},
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "muirGlacierBlock": 0,
+    "berlinBlock": 0,
+    "londonBlock": 0
+  },
+  "difficulty": "0x200",
+  "gasLimit": "0x8000000",
+  "coinbase": "0xYourWalletAddressHere",
+  "alloc": {
+    "0xYourWalletAddressHere": {
+      "balance": "0x152D02C7E14AF6800000"
+    }
+  }
+}
