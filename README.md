@@ -58,9 +58,9 @@ cd geth-nodes
 
 Jalankan perintah berikut (hanya sekali):
 ```bash
-docker run --rm   -v $(pwd)/pow-data:/data   -v $(pwd)/genesis/pow.json:/genesis.json   ethereum/client-go:stable --datadir /data init /genesis.json
+docker run --rm   -v $(pwd)/pow-data:/data   -v $(pwd)/genesis/pow.json:/genesis.json   ethereum/client-go:v1.11.6 --datadir /data init /genesis.json
 
-docker run --rm   -v $(pwd)/poa-data:/data   -v $(pwd)/genesis/poa.json:/genesis.json   ethereum/client-go:stable --datadir /data init /genesis.json
+docker run --rm   -v $(pwd)/poa-data:/data   -v $(pwd)/genesis/poa.json:/genesis.json   ethereum/client-go:v1.12.0 --datadir /data init /genesis.json
 ```
 
 ---
@@ -85,7 +85,7 @@ docker compose -f poa-compose.yml up -d
 
 Gunakan **Remix IDE** untuk men-*deploy* file `.sol` dari folder `contracts/`.
 
-1. Buka [Remix IDE](https://remix.ethereum.org) atau memakai REMIX Desktop.
+1. Buka [Remix IDE](https://remix.ethereum.org) atau bisa memakai REMIX Desktop.
 2. Hubungkan ke jaringan PoW atau PoA lokal Anda.
 3. Deploy setiap kontrak ke jaringan yang sesuai.
 4. Catat semua **alamat kontrak** yang berhasil di-deploy (akan digunakan di langkah berikutnya).
